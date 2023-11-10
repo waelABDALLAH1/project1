@@ -1,11 +1,12 @@
 const express = require("express")
 const app=express()
-
+const db=require('./config/database')
 // bring ejs template 
 app.set ('view engine','ejs')
 //bring static
 app.use(express.static('public'))
 app.use(express.static('node_modules'))
+
 
 app.get('/' , (req,res)=> {
     res.send("yemchy mil web ")

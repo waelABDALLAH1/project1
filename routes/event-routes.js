@@ -1,9 +1,22 @@
 const express = require("express")
 const router=express.Router()
+const Event = require('../models/Event')
 
 //rout to home events 
 router.get('/',(req,res)=>{
-    res.render('events/index')
+    Event.find({}, (err,events)=>{
+      //  res.json(events)
+      let chunk=[]
+      let chunksize = 3
+      for (let i=0; i< events.length ; i+=chunksize){
+      chunk.push(events.slice(i,chunksize + i ))
+    }
+    //res.json(chunk)
+      res.render('events/index',{
+      chunk: chunk
+    })
+})
+  
 })
 
 
