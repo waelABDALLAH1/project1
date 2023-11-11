@@ -1,8 +1,14 @@
 const express = require("express")
 const app=express()
 const db=require('./config/database')
+const bodyParser=require('body-parser')
 // bring ejs template 
 app.set ('view engine','ejs')
+//bring bodyparser 
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+
+
 //bring static
 app.use(express.static('public'))
 app.use(express.static('node_modules'))
